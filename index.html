@@ -1124,7 +1124,7 @@
           <a href="#cases">사례 보기</a>
           <a href="#process">상담 과정</a>
           <a href="#contact">상담</a>
-          <a class="nav-cta kakao-chat-link" href="https://pf.kakao.com/_xhZjbK/chat" target="_blank" rel="noopener">카카오톡 상담</a>
+          <a class="nav-cta kakao-chat-link" href="https://pf.kakao.com/_xhZjbK" target="_self" rel="noopener">카카오톡 상담</a>
         </div>
       </nav>
     </header>
@@ -1145,7 +1145,7 @@
               설치 사진 보기
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK/chat" target="_blank" rel="noopener">
+            <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK" target="_self" rel="noopener">
               카카오톡 상담
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
             </a>
@@ -1234,7 +1234,7 @@
                 <div class="chat-bubble">사진 기준으로 맞는 방식부터 보겠습니다.</div>
               </div>
               <div class="kakao-actions">
-                <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK/chat" target="_blank" rel="noopener">카카오톡 상담창 열기</a>
+                <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK" target="_self" rel="noopener">카카오톡 상담창 열기</a>
                 <button class="btn" type="button" id="focusContactForm">상담 정보 입력</button>
               </div>
             </article>
@@ -1267,7 +1267,7 @@
             <div class="form-status" id="formStatus" aria-live="polite"></div>
             <div class="form-actions">
               <button class="btn contact-submit" type="submit">상담 문구 복사</button>
-              <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK/chat" target="_blank" rel="noopener">카카오톡 열기</a>
+              <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK" target="_self" rel="noopener">카카오톡 열기</a>
             </div>
           </form>
         </div>
@@ -1364,7 +1364,7 @@
           <div><span>상담 참고</span><b>예배당 사진 및 희망 위치</b></div>
         </div>
         <p><strong>메모:</strong> ${operationCopy}</p>
-        <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK/chat" target="_blank" rel="noopener" data-close>카카오톡 상담</a>
+        <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK" target="_self" rel="noopener" data-close>카카오톡 상담</a>
       `;
       drawerContent.querySelectorAll(".photo-thumb").forEach((button) => {
         button.addEventListener("click", () => {
@@ -1388,7 +1388,18 @@
       if (event.key === "Escape") closeDrawer();
     });
 
-    const KAKAO_CHAT_URL = "https://pf.kakao.com/_xhZjbK/chat";
+    const KAKAO_CHANNEL_URL = "https://pf.kakao.com/_xhZjbK";
+    const KAKAO_CHAT_URL = `${KAKAO_CHANNEL_URL}/chat`;
+
+    function isMobileKakaoTarget() {
+      const mobileAgent = /Android|iPhone|iPad|iPod|KAKAOTALK/i.test(navigator.userAgent);
+      const narrowTouch = window.matchMedia("(max-width: 900px)").matches && navigator.maxTouchPoints > 0;
+      return mobileAgent || narrowTouch;
+    }
+
+    function getKakaoTargetUrl() {
+      return isMobileKakaoTarget() ? KAKAO_CHAT_URL : KAKAO_CHANNEL_URL;
+    }
 
     const kakaoMessage = () => {
       const form = document.getElementById("contactForm");
@@ -1417,22 +1428,26 @@
       return ok;
     }
 
+    function syncKakaoLinks() {
+      const isMobile = isMobileKakaoTarget();
+      document.querySelectorAll(".kakao-chat-link").forEach((link) => {
+        link.href = getKakaoTargetUrl();
+        link.target = isMobile ? "_blank" : "_self";
+        link.rel = "noopener";
+      });
+    }
+
     document.addEventListener("click", (event) => {
       const link = event.target.closest(".kakao-chat-link");
       if (!link) return;
       if (link.matches("[data-close]")) closeDrawer();
-      const contact = document.getElementById("contact");
-      const shouldScroll = link.closest(".site-header") || link.closest(".hero");
-      if (shouldScroll && contact) {
-        window.scrollTo({ top: Math.max(0, contact.offsetTop - 84), behavior: "smooth" });
-      }
+      if (isMobileKakaoTarget()) return;
+      event.preventDefault();
+      window.location.assign(KAKAO_CHANNEL_URL);
     });
 
-    document.querySelectorAll(".kakao-chat-link").forEach((link) => {
-      link.href = KAKAO_CHAT_URL;
-      link.target = "_blank";
-      link.rel = "noopener";
-    });
+    syncKakaoLinks();
+    window.addEventListener("resize", syncKakaoLinks);
 
     document.querySelectorAll("[href='#contact']:not(.kakao-chat-link)").forEach((link) => {
       link.addEventListener("click", (event) => {
