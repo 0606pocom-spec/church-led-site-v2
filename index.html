@@ -141,26 +141,37 @@
       object-position: center;
     }
     .hero-underbar {
+      position: relative;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
       align-items: center;
       justify-content: center;
       margin-top: 18px;
-      padding: 22px 20px;
-      border: 1px solid var(--border);
+      padding: 28px 24px 24px;
+      border: 1px solid color-mix(in oklch, var(--accent-2) 16%, var(--border));
       border-radius: 10px;
-      background: oklch(100% 0 0 / 0.86);
+      background:
+        linear-gradient(180deg, oklch(100% 0 0 / 0.94), oklch(97.5% 0.004 248 / 0.9));
       text-align: center;
       box-shadow: 0 12px 36px oklch(20% 0.035 245 / 0.06);
+    }
+    .hero-underbar::before {
+      content: "";
+      width: 72px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent-2), var(--gold));
     }
     .hero-underbar strong {
       display: block;
       margin: 0;
+      max-width: 760px;
       color: var(--navy);
-      font-size: clamp(26px, 3vw, 42px);
-      line-height: 1.18;
+      font-size: clamp(30px, 3.4vw, 48px);
+      line-height: 1.12;
       font-weight: 900;
+      text-wrap: balance;
     }
     .eyebrow {
       display: inline-flex;
@@ -207,6 +218,9 @@
     .hero-underbar .hero-actions {
       justify-content: center;
       margin-top: 0;
+    }
+    .hero-underbar .btn {
+      min-height: 46px;
     }
     .btn {
       display: inline-flex;
@@ -1150,7 +1164,7 @@
               <path d="M9 17v-5h6v5M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-          <span>교회 엘이디 설치사례<small>포콤 협력업체 시공 사례</small></span>
+          <span>교회 LED 설치사례<small>포콤 협력업체 시공 사례</small></span>
         </a>
         <div class="nav-links">
           <a href="#cases">사례 보기</a>
@@ -1169,7 +1183,7 @@
         <div class="hero-underbar">
           <div>
             <h1 id="hero-title" class="sr-only">교회 LED 전광판 설치사례</h1>
-            <strong>예배당 엘이디 설치사례 20건</strong>
+            <strong>예배당 LED 설치사례 20건</strong>
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#cases">
