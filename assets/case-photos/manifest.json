@@ -1,0 +1,148 @@
+[
+  {
+    "id": "CASE-01",
+    "label": "강남OO교회",
+    "photos": [
+      "assets/case-photos/case-01-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-02",
+    "label": "강릉OO교회",
+    "photos": [
+      "assets/case-photos/case-02-1.jpg",
+      "assets/case-photos/case-02-2.jpg"
+    ]
+  },
+  {
+    "id": "CASE-03",
+    "label": "고흥OO교회",
+    "photos": [
+      "assets/case-photos/case-03-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-04",
+    "label": "구미OO교회",
+    "photos": [
+      "assets/case-photos/case-04-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-05",
+    "label": "기쁜OO교회",
+    "photos": [
+      "assets/case-photos/case-05-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-06",
+    "label": "김천OO교회",
+    "photos": [
+      "assets/case-photos/case-06-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-07",
+    "label": "동해OO교회",
+    "photos": [
+      "assets/case-photos/case-07-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-08",
+    "label": "현장명 확인 필요 A",
+    "photos": [
+      "assets/case-photos/case-08-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-09",
+    "label": "현장명 확인 필요 B",
+    "photos": [
+      "assets/case-photos/case-09-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-10",
+    "label": "현장명 확인 필요 C",
+    "photos": [
+      "assets/case-photos/case-10-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-11",
+    "label": "신림OO교회",
+    "photos": [
+      "assets/case-photos/case-11-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-12",
+    "label": "신성OO교회(커브드)",
+    "photos": [
+      "assets/case-photos/case-12-1.jpg",
+      "assets/case-photos/case-12-2.jpg"
+    ]
+  },
+  {
+    "id": "CASE-13",
+    "label": "은평OO교회",
+    "photos": [
+      "assets/case-photos/case-13-1.jpg",
+      "assets/case-photos/case-13-2.jpg"
+    ]
+  },
+  {
+    "id": "CASE-14",
+    "label": "인천OO교회",
+    "photos": [
+      "assets/case-photos/case-14-1.jpg",
+      "assets/case-photos/case-14-2.jpg"
+    ]
+  },
+  {
+    "id": "CASE-15",
+    "label": "인천OO교회(라운드형",
+    "photos": [
+      "assets/case-photos/case-15-1.jpg",
+      "assets/case-photos/case-15-2.jpg"
+    ]
+  },
+  {
+    "id": "CASE-16",
+    "label": "전주OO교회",
+    "photos": [
+      "assets/case-photos/case-16-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-17",
+    "label": "전주OO교회2",
+    "photos": [
+      "assets/case-photos/case-17-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-18",
+    "label": "제주OO교회",
+    "photos": [
+      "assets/case-photos/case-18-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-19",
+    "label": "AOO교회",
+    "photos": [
+      "assets/case-photos/case-19-1.jpg"
+    ]
+  },
+  {
+    "id": "CASE-20",
+    "label": "OO대학교 예배당",
+    "photos": [
+      "assets/case-photos/case-20-1.jpg",
+      "assets/case-photos/case-20-2.jpg"
+    ]
+  }
+]

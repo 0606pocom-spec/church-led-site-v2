@@ -1,0 +1,1484 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>교회 LED 전광판 설치사례 | 포콤 협력업체</title>
+  <style>
+    :root {
+      --bg: oklch(97.5% 0.004 248);
+      --surface: oklch(100% 0 0);
+      --surface-2: oklch(94.5% 0.006 248);
+      --fg: oklch(17% 0.025 252);
+      --muted: oklch(48% 0.018 252);
+      --border: oklch(86% 0.008 248);
+      --accent: oklch(63% 0.13 176);
+      --accent-2: oklch(47% 0.11 250);
+      --gold: oklch(70% 0.11 82);
+      --kakao: oklch(82% 0.13 93);
+      --kakao-ink: var(--navy);
+      --warning: oklch(66% 0.16 72);
+      --success: oklch(58% 0.15 145);
+      --navy: oklch(20% 0.045 252);
+      --ink-soft: oklch(31% 0.03 252);
+      --shadow: 0 24px 70px oklch(10% 0.03 252 / 0.16);
+      --radius: 8px;
+      --font-display: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+      --font-body: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+      --font-mono: "SFMono-Regular", "Menlo", "Consolas", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .page {
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, oklch(99% 0.003 248) 0%, var(--bg) 48%, oklch(94% 0.006 248) 100%);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid oklch(90% 0.011 235 / 0.8);
+      background: oklch(99% 0.004 230 / 0.88);
+      backdrop-filter: blur(18px);
+    }
+    .nav {
+      width: min(1180px, calc(100% - 48px));
+      height: 72px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--navy);
+      color: white;
+      box-shadow: inset 0 -8px 18px oklch(0% 0 0 / 0.14);
+    }
+    .brand-mark svg { width: 21px; height: 21px; }
+    .brand span small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--ink-soft);
+      font-size: 14px;
+      font-weight: 720;
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .hero {
+      width: min(1400px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 34px 0 52px;
+    }
+    .hero-poster {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid oklch(84% 0.01 245);
+      border-radius: 10px;
+      background: var(--surface);
+      box-shadow: 0 28px 80px oklch(13% 0.035 252 / 0.16);
+    }
+    .hero-poster img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1536 / 944;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero-underbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      margin-top: 18px;
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: oklch(100% 0 0 / 0.86);
+      box-shadow: 0 12px 36px oklch(20% 0.035 245 / 0.06);
+    }
+    .hero-underbar strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--navy);
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .hero-underbar span {
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 650;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--accent-2);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 5px color-mix(in oklch, var(--gold) 18%, transparent);
+    }
+    h1 {
+      margin: 18px 0 18px;
+      max-width: 760px;
+      font-family: var(--font-display);
+      font-size: clamp(50px, 5.3vw, 76px);
+      line-height: 1.03;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+    .hero-copy {
+      max-width: 690px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+    .hero-copy strong { color: var(--fg); font-weight: 850; }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 30px;
+    }
+    .hero-underbar .hero-actions { margin-top: 0; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 19px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--fg);
+      font-weight: 850;
+      transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.2s, background 0.2s;
+    }
+    .btn:hover { transform: translateY(-1px); border-color: color-mix(in oklch, var(--accent-2), var(--border)); }
+    .btn-primary {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+    .btn-kakao {
+      background: color-mix(in oklch, var(--kakao) 24%, white);
+      color: var(--kakao-ink);
+      border-color: color-mix(in oklch, var(--kakao) 58%, var(--border));
+      box-shadow: none;
+    }
+    .btn-kakao::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--kakao);
+    }
+    .btn svg { width: 18px; height: 18px; }
+    .proof-strip {
+      margin-top: 34px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .proof-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: oklch(100% 0 0 / 0.72);
+      color: var(--ink-soft);
+      font-size: 13px;
+      font-weight: 760;
+    }
+    .proof-pill b { color: var(--navy); }
+
+    .visual-card {
+      position: relative;
+      min-height: 590px;
+      border: 1px solid oklch(83% 0.008 248);
+      border-radius: 8px;
+      background: var(--navy);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .visual-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 36%, oklch(8% 0.02 252 / 0.72));
+      z-index: 2;
+      pointer-events: none;
+    }
+    .hero-photo-main {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-photo-stack {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      z-index: 3;
+      display: grid;
+      gap: 12px;
+      width: 190px;
+    }
+    .hero-photo-stack img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      border: 1px solid oklch(100% 0 0 / 0.42);
+      border-radius: 6px;
+      box-shadow: 0 16px 32px oklch(0% 0 0 / 0.24);
+    }
+    .hero-label {
+      position: absolute;
+      left: 26px;
+      top: 26px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: oklch(100% 0 0 / 0.84);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      backdrop-filter: blur(12px);
+    }
+    .photo-credit {
+      position: absolute;
+      left: 26px;
+      bottom: 154px;
+      z-index: 3;
+      color: oklch(100% 0 0 / 0.82);
+      font-size: 13px;
+      font-weight: 780;
+    }
+    .hero-photo-main,
+    .hero-photo-stack img {
+      filter: saturate(0.9) contrast(1.03);
+    }
+    .church-scene,
+    .church-building,
+    .led-board {
+      display: none;
+    }
+    .church-scene {
+      position: absolute;
+      inset: 42px 34px 138px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .church-building {
+      position: absolute;
+      left: 46px;
+      right: 46px;
+      bottom: 0;
+      height: 245px;
+      background: linear-gradient(180deg, oklch(96% 0.006 235), oklch(89% 0.012 235));
+      border: 1px solid oklch(76% 0.014 235);
+      border-bottom: 0;
+      clip-path: polygon(0 38%, 45% 38%, 50% 0, 55% 38%, 100% 38%, 100% 100%, 0 100%);
+    }
+    .church-building::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 32px;
+      width: 10px;
+      height: 54px;
+      transform: translateX(-50%);
+      background: var(--navy);
+      box-shadow: -18px 20px 0 -3px var(--navy), 18px 20px 0 -3px var(--navy);
+      opacity: 0.86;
+    }
+    .led-board {
+      position: absolute;
+      left: 82px;
+      right: 82px;
+      bottom: 62px;
+      height: 76px;
+      border-radius: 5px;
+      background:
+        radial-gradient(circle at 12px 12px, oklch(85% 0.16 185) 1px, transparent 1.7px),
+        linear-gradient(90deg, oklch(17% 0.055 248), oklch(23% 0.085 250));
+      background-size: 12px 12px, auto;
+      border: 6px solid oklch(24% 0.035 245);
+      color: oklch(86% 0.15 185);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-shadow: 0 0 12px oklch(76% 0.18 185);
+    }
+    .visual-footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 4;
+      padding: 22px 26px 26px;
+      background: oklch(10% 0.025 252 / 0.82);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid oklch(100% 0 0 / 0.16);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: end;
+    }
+    .visual-footer h2 {
+      margin: 0 0 6px;
+      font-size: 21px;
+      letter-spacing: 0;
+      color: white;
+    }
+    .visual-footer p {
+      margin: 0;
+      color: oklch(86% 0.01 248);
+      font-size: 14px;
+    }
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 104px);
+      gap: 8px;
+    }
+    .mini-stat {
+      padding: 11px 12px;
+      border: 1px solid oklch(100% 0 0 / 0.14);
+      border-radius: 8px;
+      background: oklch(100% 0 0 / 0.1);
+    }
+    .mini-stat b {
+      display: block;
+      color: var(--gold);
+      font-size: 20px;
+      line-height: 1;
+      font-family: var(--font-mono);
+    }
+    .mini-stat span {
+      color: oklch(86% 0.01 248);
+      font-size: 12px;
+      font-weight: 730;
+    }
+
+    .section {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 58px 0;
+    }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 24px;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+    .section-head p {
+      max-width: 520px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      text-wrap: pretty;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .trust-card {
+      min-height: 164px;
+      padding: 22px;
+      border: 0;
+      border-radius: 0;
+      background: var(--surface);
+    }
+    .trust-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: color-mix(in oklch, var(--gold) 18%, white);
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+    .trust-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    .trust-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .case-panel {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 16px 42px oklch(20% 0.04 245 / 0.06);
+      overflow: hidden;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--fg);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .contact-form input,
+    .contact-form textarea { padding: 12px 14px; }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 4px color-mix(in oklch, var(--accent-2) 16%, transparent);
+    }
+    .case-count {
+      padding: 18px 20px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 760;
+      border-bottom: 1px solid var(--border);
+      background: oklch(99% 0.004 230);
+    }
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      padding: 18px;
+      background: oklch(98% 0.003 248);
+    }
+    .case-card {
+      min-height: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0;
+      background: var(--surface);
+      text-align: left;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: background 0.2s, transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .case-card:hover {
+      background: oklch(99% 0.005 230);
+      transform: translateY(-2px);
+    }
+    .case-visual {
+      height: 278px;
+      margin: 0;
+      border-radius: 0;
+      border: 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-2);
+      position: relative;
+      overflow: hidden;
+    }
+    .case-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .case-card:hover .case-visual img { transform: scale(1.035); }
+    .case-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 72%, oklch(9% 0.02 252 / 0.18));
+      pointer-events: none;
+    }
+    .case-visual::after {
+      content: none;
+    }
+    .case-body {
+      padding: 15px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .case-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 780;
+      font-family: var(--font-mono);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: color-mix(in oklch, var(--accent) 13%, white);
+      color: oklch(33% 0.08 185);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 850;
+    }
+    .case-card h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.28;
+      letter-spacing: 0;
+      word-break: keep-all;
+      overflow-wrap: normal;
+      text-wrap: pretty;
+    }
+    .case-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+    }
+    .case-specs {
+      margin-top: auto;
+      display: none;
+      gap: 8px;
+    }
+    .case-spec {
+      padding: 11px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: oklch(98% 0.004 230);
+    }
+    .case-spec span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 760;
+    }
+    .case-spec b {
+      display: block;
+      font-size: 13px;
+      font-weight: 850;
+      overflow-wrap: anywhere;
+    }
+
+    .process {
+      display: grid;
+      gap: 14px;
+      align-items: start;
+    }
+    .process-card,
+    .contact-card {
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+    .process-card h3,
+    .contact-card h3 {
+      margin: 0 0 12px;
+      font-size: 25px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    .process-card p,
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .process-card.process-intro {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: center;
+      padding: 22px;
+      background:
+        linear-gradient(135deg, oklch(100% 0 0), oklch(96% 0.006 240));
+    }
+    .process-intro h3 {
+      margin-bottom: 6px;
+      font-size: 22px;
+    }
+    .process-note-list {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .process-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 0 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      white-space: nowrap;
+    }
+    .process-note span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+    .process-note b {
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 850;
+    }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: start;
+      min-height: 158px;
+      padding: 22px;
+      border: 1px solid oklch(74% 0.018 245);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, oklch(100% 0 0), oklch(97% 0.006 245));
+      box-shadow: 0 12px 30px oklch(15% 0.03 252 / 0.07);
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 76px;
+      height: 48px;
+      border-radius: 8px;
+      border: 1px solid color-mix(in oklch, var(--gold) 52%, white);
+      background: color-mix(in oklch, var(--gold) 24%, white);
+      color: var(--navy);
+      font-family: var(--font-mono);
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: 0;
+      box-shadow: inset 0 -1px 0 oklch(100% 0 0 / 0.65);
+    }
+    .step b {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--fg);
+      font-size: 23px;
+      line-height: 1.32;
+      font-weight: 900;
+    }
+    .step span {
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.5;
+      word-break: keep-all;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+    }
+    .kakao-panel {
+      display: grid;
+      gap: 18px;
+    }
+    .kakao-card {
+      position: relative;
+      padding: 26px;
+      border: 1px solid color-mix(in oklch, var(--kakao) 45%, var(--border));
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, color-mix(in oklch, var(--kakao) 22%, white), var(--surface) 52%);
+      overflow: hidden;
+    }
+    .kakao-card::after {
+      content: "";
+      position: absolute;
+      right: -54px;
+      top: -72px;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: color-mix(in oklch, var(--kakao) 28%, transparent);
+      pointer-events: none;
+    }
+    .kakao-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: var(--kakao);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+    .kakao-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--navy);
+    }
+    .kakao-card h3 {
+      margin: 0 0 10px;
+      font-size: 25px;
+      line-height: 1.25;
+    }
+    .kakao-card p {
+      margin: 0;
+      color: var(--ink-soft);
+    }
+    .kakao-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .kakao-chat-preview {
+      display: grid;
+      gap: 8px;
+      margin-top: 22px;
+      padding: 14px;
+      border: 1px solid color-mix(in oklch, var(--kakao) 40%, var(--border));
+      border-radius: 8px;
+      background: oklch(100% 0 0 / 0.72);
+    }
+    .chat-bubble {
+      width: fit-content;
+      max-width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--ink-soft);
+      font-size: 14px;
+      font-weight: 720;
+      box-shadow: 0 8px 18px oklch(20% 0.035 245 / 0.06);
+    }
+    .chat-bubble.user {
+      justify-self: end;
+      background: var(--kakao);
+      color: var(--navy);
+    }
+    .kakao-note {
+      display: grid;
+      gap: 10px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+    .kakao-note b { font-size: 16px; }
+    .kakao-note span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .contact-form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .contact-form label {
+      display: grid;
+      gap: 6px;
+      color: var(--ink-soft);
+      font-size: 13px;
+      font-weight: 820;
+    }
+    .contact-form label.full { grid-column: 1 / -1; }
+    .contact-form textarea { min-height: 112px; resize: vertical; }
+    .type-choice {
+      grid-column: 1 / -1;
+      display: grid;
+      gap: 8px;
+    }
+    .type-choice > span {
+      color: var(--ink-soft);
+      font-size: 13px;
+      font-weight: 820;
+    }
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .choice-chip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: oklch(99% 0.003 248);
+      color: var(--ink-soft);
+      font-size: 13px;
+      font-weight: 780;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .choice-chip input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .choice-chip:has(input:checked) {
+      border-color: color-mix(in oklch, var(--kakao) 62%, var(--border));
+      background: color-mix(in oklch, var(--kakao) 22%, white);
+      color: var(--navy);
+    }
+    .form-status {
+      min-height: 22px;
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 720;
+    }
+    .form-status.ok { color: var(--success); }
+    .form-status.warn { color: var(--warning); }
+    .form-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .contact-submit { justify-self: start; }
+    .drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.18s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .drawer.open {
+      pointer-events: auto;
+      opacity: 1;
+    }
+    .drawer-backdrop {
+      position: absolute;
+      inset: 0;
+      background: oklch(10% 0.03 245 / 0.46);
+    }
+    .drawer-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: min(560px, 100%);
+      height: 100%;
+      background: var(--surface);
+      box-shadow: -22px 0 60px oklch(10% 0.03 245 / 0.24);
+      transform: translateX(24px);
+      transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+      overflow: auto;
+    }
+    .drawer.open .drawer-panel { transform: translateX(0); }
+    .drawer-head {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border);
+      background: oklch(100% 0 0 / 0.9);
+      backdrop-filter: blur(14px);
+    }
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      display: grid;
+      place-items: center;
+    }
+    .drawer-content { padding: 22px; }
+    .drawer-content h2 {
+      margin: 16px 0 10px;
+      font-size: 30px;
+      line-height: 1.18;
+    }
+    .drawer-content p { color: var(--muted); }
+    .drawer-photo {
+      height: 260px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      position: relative;
+      overflow: hidden;
+    }
+    .drawer-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .drawer-photo::before {
+      content: "첨부 현장 사진";
+      position: absolute;
+      left: 22px;
+      bottom: 22px;
+      padding: 7px 10px;
+      border-radius: 8px;
+      background: oklch(100% 0 0 / 0.78);
+      color: var(--ink-soft);
+      font-size: 13px;
+      font-weight: 840;
+      backdrop-filter: blur(10px);
+    }
+    .photo-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .photo-thumb {
+      height: 72px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--surface-2);
+      cursor: pointer;
+      padding: 0;
+    }
+    .photo-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .detail-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 18px 0;
+    }
+    .detail-list div {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: oklch(98% 0.004 230);
+    }
+    .detail-list span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .detail-list b {
+      display: block;
+      margin-top: 4px;
+      font-size: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    .empty {
+      display: none;
+      padding: 42px 18px;
+      background: var(--surface);
+      text-align: center;
+      color: var(--muted);
+      font-weight: 760;
+    }
+    .empty.show { display: block; }
+
+    @media (max-width: 1100px) {
+      .hero-underbar { grid-template-columns: 1fr; align-items: stretch; }
+      .visual-card { min-height: 480px; }
+      .trust-grid, .case-grid { grid-template-columns: repeat(2, 1fr); }
+      .process, .contact-wrap { grid-template-columns: 1fr; }
+      .process-card.process-intro { grid-template-columns: 1fr; }
+      .process-note-list { justify-content: flex-start; }
+    }
+    @media (max-width: 760px) {
+      .nav { width: min(100% - 28px, 1180px); }
+      .nav-links { display: none; }
+      .hero, .section { width: min(100% - 28px, 1180px); }
+      .hero { padding-top: 22px; }
+      .hero-poster img { object-fit: contain; }
+      h1 { font-size: 46px; }
+      .hero-copy { font-size: 17px; }
+      .hero-actions, .section-head { align-items: stretch; flex-direction: column; }
+      .hero-underbar { padding: 16px; }
+      .visual-footer { grid-template-columns: 1fr; }
+      .trust-grid, .case-grid, .timeline, .contact-form, .detail-list { grid-template-columns: 1fr; }
+      .case-card { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <nav class="nav" aria-label="주요 메뉴">
+        <a class="brand" href="#">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 17V8.5L12 4l7 4.5V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 17v-5h6v5M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span>교회 LED 설치사례<small>포콤 협력업체 시공 레퍼런스</small></span>
+        </a>
+        <div class="nav-links">
+          <a href="#cases">사례 보기</a>
+          <a href="#process">상담 과정</a>
+          <a href="#contact">상담</a>
+          <a class="nav-cta kakao-chat-link" href="https://pf.kakao.com/_xhZjbK/chat" target="_blank" rel="noopener">카카오톡 상담</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-poster">
+          <img src="mpnjgam2-IMAGE-2026-05-27-13_02_42.jpg" alt="교회 LED 전광판 설치사례 대표 이미지" />
+        </div>
+        <div class="hero-underbar">
+          <div>
+            <h1 id="hero-title" class="sr-only">교회 LED 전광판 설치사례</h1>
+            <strong>예배당 LED 설치 레퍼런스 20건</strong>
+          <span>포콤 협력업체와 함께 진행한 예배당 내부 시공 사진을 모았습니다.</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#cases">
+              설치 사진 보기
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK/chat" target="_blank" rel="noopener">
+              카카오톡 상담
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="trust-title">
+        <div class="section-head">
+          <h2 id="trust-title">사진으로 보는 예배당 LED 시공</h2>
+          <p>실제 예배당 내부 시공 사진만 담았습니다.</p>
+        </div>
+        <div class="trust-grid">
+          <article class="trust-card">
+            <div class="trust-icon" aria-hidden="true">01</div>
+            <h3>시공 사진</h3>
+            <p>사진마다 현장 분위기가 먼저 보이도록 구성했습니다.</p>
+          </article>
+          <article class="trust-card">
+            <div class="trust-icon" aria-hidden="true">02</div>
+            <h3>예배당 내부</h3>
+            <p>전면, 강단 주변, 로비의 적용 모습을 담았습니다.</p>
+          </article>
+          <article class="trust-card">
+            <div class="trust-icon" aria-hidden="true">03</div>
+            <h3>설치 형태</h3>
+            <p>LED월, 돌출형, 매립형 등 형태만 간단히 표기했습니다.</p>
+          </article>
+          <article class="trust-card">
+            <div class="trust-icon" aria-hidden="true">04</div>
+            <h3>카카오 상담</h3>
+            <p>비슷한 사례에서 상담을 이어갑니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="cases" aria-labelledby="case-title">
+        <div class="section-head">
+          <h2 id="case-title">예배당 LED 설치 사진 20건</h2>
+          <p>예배당 내부 LED 시공 사진을 한곳에 모았습니다.</p>
+        </div>
+        <div class="case-panel">
+          <div class="case-count" id="caseCount">예배당 LED 설치 사진 20건</div>
+          <div class="case-grid" id="caseGrid"></div>
+        </div>
+      </section>
+
+      <section class="section" id="process" aria-labelledby="process-title">
+        <div class="section-head">
+          <h2 id="process-title">상담 진행 방식</h2>
+          <p>상담은 예배당 사진 몇 장으로 시작합니다.</p>
+        </div>
+        <div class="process">
+          <article class="process-card process-intro">
+            <div>
+              <h3>상담 전 준비</h3>
+              <p>사진 몇 장과 관심 형태 정도면 충분합니다.</p>
+            </div>
+            <div class="process-note-list" aria-label="상담 준비 자료">
+              <div class="process-note"><span>사진</span><b>예배당 2~3장</b></div>
+              <div class="process-note"><span>형태</span><b>관심 방식</b></div>
+              <div class="process-note"><span>상담</span><b>카카오톡</b></div>
+            </div>
+          </article>
+          <div class="timeline" aria-label="상담 진행 순서">
+            <div class="step"><span class="step-num">01</span><div><b>사진 확인</b><span>사진을 보며 공간과 위치를 함께 봅니다.</span></div></div>
+            <div class="step"><span class="step-num">02</span><div><b>형태 선택</b><span>LED월, 돌출형, 매립형 중 맞는 방향을 잡습니다.</span></div></div>
+            <div class="step"><span class="step-num">03</span><div><b>상담 연결</b><span>포콤 협력업체와 일정 및 시공 범위를 이어갑니다.</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact" aria-labelledby="contact-title">
+        <div class="section-head">
+          <h2 id="contact-title">카카오톡 상담</h2>
+          <p>사진과 기본 정보로 상담을 이어갑니다.</p>
+        </div>
+        <div class="contact-wrap">
+          <div class="kakao-panel">
+            <article class="kakao-card">
+              <span class="kakao-badge">KakaoTalk</span>
+              <h3>사진으로 먼저 봅니다</h3>
+              <p>예배당 전면이나 설치 예정 벽면을 함께 보며 방향을 잡습니다.</p>
+              <div class="kakao-chat-preview" aria-label="카카오톡 상담 예시">
+                <div class="chat-bubble user">예배당 전면 사진 보내드립니다.</div>
+                <div class="chat-bubble">사진 기준으로 맞는 방식부터 보겠습니다.</div>
+              </div>
+              <div class="kakao-actions">
+                <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK/chat" target="_blank" rel="noopener">카카오톡 상담창 열기</a>
+                <button class="btn" type="button" id="focusContactForm">상담 정보 입력</button>
+              </div>
+            </article>
+            <article class="kakao-note">
+              <b>상담에 참고되는 사진</b>
+              <span>예배당 전면, 설치 예정 벽면, 좌석 뒤쪽에서 본 모습</span>
+            </article>
+          </div>
+          <form class="contact-card contact-form" id="contactForm" novalidate>
+            <label>교회명
+              <input name="church" placeholder="예: ○○교회" />
+            </label>
+            <label>담당자 연락처
+              <input name="phone" placeholder="예: 010-0000-0000" />
+            </label>
+            <div class="type-choice" role="group" aria-label="관심 설치 형태">
+              <span>관심 설치 형태</span>
+              <div class="choice-row">
+                <label class="choice-chip"><input type="radio" name="installType" value="LED월" />LED월</label>
+                <label class="choice-chip"><input type="radio" name="installType" value="돌출형" />돌출형</label>
+                <label class="choice-chip"><input type="radio" name="installType" value="매립형" />매립형</label>
+                <label class="choice-chip"><input type="radio" name="installType" value="양사이드형" />양사이드형</label>
+                <label class="choice-chip"><input type="radio" name="installType" value="라운드형" />라운드형</label>
+                <label class="choice-chip"><input type="radio" name="installType" value="아직 모르겠어요" checked />아직 모르겠어요</label>
+              </div>
+            </div>
+            <label class="full">상담 내용
+              <textarea name="message" placeholder="예: 예배당 전면 LED 설치 상담을 받고 싶습니다."></textarea>
+            </label>
+            <div class="form-status" id="formStatus" aria-live="polite"></div>
+            <div class="form-actions">
+              <button class="btn contact-submit" type="submit">상담 문구 복사</button>
+              <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK/chat" target="_blank" rel="noopener">카카오톡 열기</a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <aside class="drawer" id="caseDrawer" aria-hidden="true" aria-label="사례 상세 보기">
+    <div class="drawer-backdrop" data-close></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <div class="drawer-head">
+        <strong>설치 사진 상세</strong>
+        <button class="icon-btn" type="button" data-close aria-label="닫기">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="drawer-content" id="drawerContent"></div>
+    </div>
+  </aside>
+
+  <script>
+    const cases = [
+      { id: "REF-01", location: "예배당 전면", method: "LED월", photos: ["assets/case-photos/case-01-1.jpg"] },
+      { id: "REF-02", location: "예배당 전면", method: "돌출형", photos: ["assets/case-photos/case-02-1.jpg", "assets/case-photos/case-02-2.jpg"] },
+      { id: "REF-03", location: "예배당 전면", method: "돌출형", photos: ["assets/case-photos/case-03-1.jpg"] },
+      { id: "REF-04", location: "예배당 전면", method: "돌출형", photos: ["assets/case-photos/case-04-1.jpg"] },
+      { id: "REF-05", location: "예배당 전면", method: "돌출형", photos: ["assets/case-photos/case-05-1.jpg"] },
+      { id: "REF-06", location: "예배당 전면", method: "돌출형", photos: ["assets/case-photos/case-06-1.jpg"] },
+      { id: "REF-07", location: "예배당 전면", method: "돌출형", photos: ["assets/case-photos/case-07-1.jpg"] },
+      { id: "REF-08", location: "예배당 전면", method: "매립형", photos: ["assets/case-photos/case-08-1.jpg"] },
+      { id: "REF-09", location: "예배당 전면", method: "돌출형", photos: ["assets/case-photos/case-09-1.jpg"] },
+      { id: "REF-10", location: "예배당 전면", method: "매립형", photos: ["assets/case-photos/case-10-1.jpg"] },
+      { id: "REF-11", location: "예배당 전면", method: "양사이드형", photos: ["assets/case-photos/case-11-1.jpg"] },
+      { id: "REF-12", location: "예배당 전면", method: "라운드형", photos: ["assets/case-photos/case-12-1.jpg", "assets/case-photos/case-12-2.jpg"] },
+      { id: "REF-13", location: "예배당 전면", method: "LED월", photos: ["assets/case-photos/case-13-1.jpg", "assets/case-photos/case-13-2.jpg"] },
+      { id: "REF-14", location: "예배당 전면", method: "돌출형", photos: ["assets/case-photos/case-14-1.jpg", "assets/case-photos/case-14-2.jpg"] },
+      { id: "REF-15", location: "로비 + 예배당", method: "라운드형 + LED월", photos: ["assets/case-photos/case-15-1.jpg", "assets/case-photos/case-15-2.jpg"] },
+      { id: "REF-16", location: "예배당 전면", method: "양사이드형", photos: ["assets/case-photos/case-16-1.jpg"] },
+      { id: "REF-17", location: "예배당 전면", method: "양사이드형", photos: ["assets/case-photos/case-17-1.jpg"] },
+      { id: "REF-18", location: "예배당 전면", method: "LED월", photos: ["assets/case-photos/case-18-1.jpg"] },
+      { id: "REF-19", location: "예배당 전면", method: "LED월", photos: ["assets/case-photos/case-19-1.jpg"] },
+      { id: "REF-20", location: "예배당 전면", method: "LED월", photos: ["assets/case-photos/case-20-1.jpg", "assets/case-photos/case-20-2.jpg"] }
+    ];
+
+    const caseGrid = document.getElementById("caseGrid");
+    const caseCount = document.getElementById("caseCount");
+    const drawer = document.getElementById("caseDrawer");
+    const drawerContent = document.getElementById("drawerContent");
+
+    function cardTemplate(item) {
+      const title = `${item.location} (${item.method})`;
+      return `
+        <button class="case-card" type="button" data-id="${item.id}" aria-label="${title} 자세히 보기">
+          <div class="case-visual">
+            <img src="${item.photos[0]}" alt="${title}" loading="lazy" />
+          </div>
+          <div class="case-body">
+            <div class="case-meta"><span>${item.id}</span><span>${item.photos.length}장</span></div>
+            <h3>${item.location} · ${item.method}</h3>
+            <p>설치 참고 사진</p>
+          </div>
+        </button>
+      `;
+    }
+
+    function renderCases() {
+      caseGrid.innerHTML = cases.map(cardTemplate).join("");
+      caseCount.textContent = `예배당 LED 설치 사진 ${cases.length}건`;
+      caseGrid.querySelectorAll(".case-card").forEach((card) => {
+        card.addEventListener("click", () => openDrawer(card.dataset.id));
+      });
+    }
+
+    function openDrawer(id) {
+      const item = cases.find((entry) => entry.id === id);
+      if (!item) return;
+      const title = `${item.location} (${item.method})`;
+      const thumbs = item.photos.map((photo, index) => `
+        <button class="photo-thumb" type="button" data-photo="${photo}" aria-label="${title} 사진 ${index + 1} 보기">
+          <img src="${photo}" alt="" loading="lazy" />
+        </button>
+      `).join("");
+      const detailIntro = "예배당 내부에 설치된 LED 시공 사진입니다.";
+      const operationCopy = "상담 시 예배당 사진과 희망 위치를 함께 봅니다.";
+      drawerContent.innerHTML = `
+        <div class="drawer-photo"><img id="drawerMainPhoto" src="${item.photos[0]}" alt="${title}" /></div>
+        ${item.photos.length > 1 ? `<div class="photo-strip">${thumbs}</div>` : ""}
+        <h2 id="drawerTitle">${item.id} · ${title}</h2>
+        <p>${detailIntro}</p>
+        <div class="detail-list">
+          <div><span>위치</span><b>${item.location}</b></div>
+          <div><span>방식</span><b>${item.method}</b></div>
+          <div><span>사진 수</span><b>${item.photos.length}장</b></div>
+          <div><span>상담 참고</span><b>예배당 사진 및 희망 위치</b></div>
+        </div>
+        <p><strong>메모:</strong> ${operationCopy}</p>
+        <a class="btn btn-kakao kakao-chat-link" href="https://pf.kakao.com/_xhZjbK/chat" target="_blank" rel="noopener" data-close>카카오톡 상담</a>
+      `;
+      drawerContent.querySelectorAll(".photo-thumb").forEach((button) => {
+        button.addEventListener("click", () => {
+          const mainPhoto = document.getElementById("drawerMainPhoto");
+          if (mainPhoto) mainPhoto.src = button.dataset.photo;
+        });
+      });
+      drawer.classList.add("open");
+      drawer.setAttribute("aria-hidden", "false");
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove("open");
+      drawer.setAttribute("aria-hidden", "true");
+    }
+
+    drawer.addEventListener("click", (event) => {
+      if (event.target.matches("[data-close]")) closeDrawer();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeDrawer();
+    });
+
+    const KAKAO_CHAT_URL = "https://pf.kakao.com/_xhZjbK/chat";
+
+    const kakaoMessage = () => {
+      const form = document.getElementById("contactForm");
+      const church = form.elements.church.value.trim() || "교회명";
+      const phone = form.elements.phone.value.trim() || "연락처";
+      const checkedType = form.querySelector('input[name="installType"]:checked');
+      const installType = checkedType ? checkedType.value : "아직 모르겠어요";
+      const message = form.elements.message.value.trim() || "예배당 LED 설치 상담을 받고 싶습니다.";
+      return `[교회 LED 전광판 상담]\n교회명: ${church}\n연락처: ${phone}\n관심 형태: ${installType}\n상담 내용: ${message}\n예배당 사진도 함께 보냅니다.`;
+    };
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      const ok = document.execCommand("copy");
+      textarea.remove();
+      return ok;
+    }
+
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest(".kakao-chat-link");
+      if (!link) return;
+      if (link.matches("[data-close]")) closeDrawer();
+      const contact = document.getElementById("contact");
+      const shouldScroll = link.closest(".site-header") || link.closest(".hero");
+      if (shouldScroll && contact) {
+        window.scrollTo({ top: Math.max(0, contact.offsetTop - 84), behavior: "smooth" });
+      }
+    });
+
+    document.querySelectorAll(".kakao-chat-link").forEach((link) => {
+      link.href = KAKAO_CHAT_URL;
+      link.target = "_blank";
+      link.rel = "noopener";
+    });
+
+    document.querySelectorAll("[href='#contact']:not(.kakao-chat-link)").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const contact = document.getElementById("contact");
+        const status = document.getElementById("formStatus");
+        if (contact) {
+          event.preventDefault();
+          window.scrollTo({ top: Math.max(0, contact.offsetTop - 84), behavior: "smooth" });
+        }
+        if (status) status.className = "form-status";
+      });
+    });
+
+    document.getElementById("focusContactForm").addEventListener("click", () => {
+      const firstInput = document.querySelector("#contactForm input");
+      const status = document.getElementById("formStatus");
+      if (firstInput) firstInput.focus({ preventScroll: true });
+      if (status) {
+        status.textContent = "교회명과 연락처를 입력하면 카카오톡용 문구가 만들어집니다.";
+        status.className = "form-status";
+      }
+    });
+
+    document.getElementById("contactForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const status = document.getElementById("formStatus");
+      const church = form.elements.church.value.trim();
+      const phone = form.elements.phone.value.trim();
+      const message = form.elements.message.value.trim();
+      if (!church || !phone || !message) {
+        status.textContent = "교회명, 연락처, 상담 내용을 입력하면 문구가 만들어집니다.";
+        status.className = "form-status warn";
+        return;
+      }
+      try {
+        await copyText(kakaoMessage());
+        status.textContent = "상담 문구가 복사되었습니다. 카카오톡 상담창에서 바로 사용 가능합니다.";
+        status.className = "form-status ok";
+      } catch (_) {
+        status.textContent = "복사가 어렵습니다. 카카오톡 상담창에서 직접 입력하셔도 됩니다.";
+        status.className = "form-status warn";
+      }
+    });
+
+    renderCases();
+  </script>
+</body>
+</html>
